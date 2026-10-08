@@ -1,0 +1,65 @@
+/* Public presentation data: no confidential source code or fabricated outcomes. */
+window.PORTFOLIO = {
+  zh: {
+    nav: ['作品','能力','关于','联系'],
+    eyebrow: 'JUSTIN / HTW913 · AI PRODUCT ENGINEER',
+    heroTitle: ['构建有价值的','AI 产品','从想法到实现。'],
+    heroIntro: '聚焦 AI 应用、Agent 工作流与产品工程。将真实用户需求转化为可体验、可验证的产品。',
+    heroMeta: ['产品思维','设计表达','工程实现'],
+    heroAction: '探索精选作品', heroSecond: '认识我',
+    heroNote: 'INDEPENDENT PRODUCT BUILDER · 2026',
+    worksEyebrow:'01 / CURATED WORKS', worksTitle:'精选作品',
+    worksLead: '用项目说明我如何思考问题、设计体验并组织技术实现，而不以未经验证的商业数字包装成果。',
+    valueTag: '核心价值', seeCase:'探索案例',
+    capabilityEyebrow:'02 / CAPABILITIES', capabilityTitle:'跨越产品与工程的边界',
+    capabilityLead:'我的核心能力不是某个工具，而是把用户体验、系统设计与工程交付连接起来。',
+    capabilityNames: ['产品策略与 UX','AI Agent 工作流','跨端应用工程','自动化交付'],
+    capabilityDescs: ['需求发现、用户路径、交互原型、体验验收','任务分解、工具协作、状态管理与评估','Taro / React / TypeScript / FastAPI','GitHub Actions、质量门禁、真机验证'],
+    aboutEyebrow:'03 / THE PERSON', aboutTitle:'不止构想，也亲手构建。',
+    aboutLead:'我是 Justin，一名独立 AI 产品开发者，毕业于浙江大学。',
+    aboutBody:'从理解用户处境开始，持续学习产品设计、AI Agent 与工程实现。我偏好快速建立可检验的原型，再根据真实反馈完善体验。GoDuck 是我正在打造的长期产品方向；其他实践则聚焦 AI 辅助研发与云端交付。',
+    aboutRule:'我相信：好的 AI 产品应该先解决人的问题，再谈技术。',
+    contactEyebrow:'04 / CONNECTION', contactTitle:'一起构建下一件值得做的事。',
+    contactLead:'对 AI 产品、Agent 应用、跨端开发及长期远程协作机会开放。欢迎从真实问题和作品开始交流。',
+    github:'查看 GitHub', foot:'独立作品集 · 基于真实项目整理', back:'返回作品集',
+    details:['项目定位','为什么做','如何设计','你可以看到的价值','事实与边界'],
+    labels: {platform:'平台',role:'我的角色',status:'展示状态',tech:'相关技术'},
+    visualNote: '视觉概念图／代码生成的抽象图形，不是实际产品截图',
+    projects: [
+      {id:'goduck',num:'01',group:'AI PRODUCT / COMPANION',name:'GoDuck · 加油鸭',headline:'让成长不再是一场独自完成的任务。',short:'以「先被接纳，再被引导」为原则的 AI 成长陪伴体验。',stage:'敬请期待',platform:'微信小程序',role:'产品策划 · 体验设计 · 独立开发',stack:'Taro · React · AI 应用',value:'帮助用户在低落、迷茫或失去动力时被理解，并重新迈出小小一步。',why:'很多人并不缺方法，而是在情绪低谷时难以执行。陪伴应该从理解人的状态开始，而非马上布置任务。',how:'围绕「表达 → 理解 → 支持 → 可选轻行动 → 长期记得」设计陪伴链路。功能方向包括情绪陪伴、一起做、目标陪伴与值得记住的瞬间。',benefits:['情绪陪伴｜在难过或迷茫时，有一个可以表达和被接住的空间','一起做｜把想做的事拆成今天可以开始的一小步','目标陪伴｜以持续鼓励和温和提醒支持长期目标','成长记录｜回看那些细小但值得珍惜的努力与瞬间'],evidence:'这是面向微信小程序的产品愿景展示，站内示意视觉不是其真实运行界面。没有 GoDuck 网页版或公开产品使用入口；最终功能以正式发布为准。'},
+      {id:'cloud',num:'02',group:'ENGINEERING / DELIVERY',name:'Cloud-first Build',headline:'让轻量设备也能完成可靠的云端构建。',short:'围绕 GitHub Actions、质量检查与真机验收建立云端优先研发流程。',stage:'工程实践',platform:'GitHub Actions + 微信开发者工具',role:'工作流设计 · 工程排障',stack:'GitHub Actions · CI · Taro',value:'减少本地环境负担，并让构建与验收过程更可重复。',why:'本地存储空间有限，直接维护大型依赖和构建缓存会阻碍日常迭代。',how:'使用私有仓库管理代码，在 GitHub Actions 执行构建与检查，再下载精简构建产物供模拟器和设备验证。',benefits:['云端优先｜把重复构建任务从本地设备移走','质量关卡｜构建与静态检查形成可复核证据','真机核验｜不把构建成功等同于用户能实际打开','发布边界｜尚未通过的公网与生产验收不写成已完成'],evidence:'这是 GoDuck 研发过程中的实际工程方法，不代表已经完成公网生产发布，也不是独立商业 SaaS。'},
+      {id:'workflow',num:'03',group:'AI DEVELOPMENT / WORKFLOW',name:'AI Delivery System',headline:'把 AI 编程工具组织成可审核的协作流程。',short:'以 Codex、Cursor、任务契约和代码评审建立个人 AI 辅助研发方法。',stage:'实践方法',platform:'开发工作流',role:'规则设计 · 需求拆解 · 审核',stack:'Codex · Cursor · GitHub',value:'降低反复返工和任务漂移，让 AI 生成代码具备更清晰的验收边界。',why:'如果没有任务上下文、版本基线与验收约束，AI 很容易做出看似完成但无法并入产品的改动。',how:'通过项目状态文档、PR 评审、角色分工、发布阻断规则与清晰的验收标准来约束开发协作。',benefits:['任务契约｜先定义目标、范围与验收标准','独立审核｜区分代码完成、构建通过和真实可用','版本管理｜使用分支、PR 与追踪文档留存证据','结果导向｜优先展示可验证成果，不夸大经验'],evidence:'这一案例展示研发协作方法，不是已经商业化销售的 Agent 平台或开发工具。'},
+      {id:'fitness',num:'04',group:'PRODUCT DESIGN / EXPLORATION',name:'火龙果健身 · Concept',headline:'把健身数据变成更直观的成长体验。',short:'以角色为中心，探索游戏化健康数据首页、饮食计划与训练反馈的产品概念。',stage:'概念探索',platform:'微信小程序概念',role:'概念策划 · UX 设计',stack:'Product UX · Gamification · AI',value:'让抽象的目标和指标更易理解，并增加持续训练的正向反馈。',why:'传统健身工具往往把密集的数据堆放在首页，初次使用容易产生负担。',how:'以角色作为视觉中心，用经验条呈现每日进度，并把训练、饮食和数据记录分为直观入口。',benefits:['角色优先｜让重要指标围绕角色服务','进度反馈｜用游戏化进度强化日常行动','信息分层｜减少首页数据拥挤','用户动机｜把注意力从焦虑指标转向持续行动'],evidence:'此项目是产品概念与交互设计探索，不代表正式发布、拥有用户或已实现视频识别等全部功能。'}
+    ]
+  },
+  en: {
+    nav:['Works','Capabilities','About','Contact'],
+    eyebrow:'JUSTIN / HTW913 · AI PRODUCT ENGINEER',
+    heroTitle:['BUILDING USEFUL','AI PRODUCTS','FROM IDEA TO REALITY.'],
+    heroIntro:'I turn user problems into testable AI products, combining product thinking, Agent workflows, and hands-on engineering.',
+    heroMeta:['PRODUCT THINKING','DESIGN','ENGINEERING'],
+    heroAction:'Explore selected work', heroSecond:'About me',heroNote:'INDEPENDENT PRODUCT BUILDER · 2026',
+    worksEyebrow:'01 / CURATED WORKS', worksTitle:'Selected Works',
+    worksLead:'A collection of real product and engineering explorations, without invented metrics or exaggerated business outcomes.',
+    valueTag:'USER VALUE',seeCase:'Explore case',
+    capabilityEyebrow:'02 / CAPABILITIES',capabilityTitle:'Across product and engineering',
+    capabilityLead:'My focus is not a single tool; it is bridging experience design, system design, and delivery.',
+    capabilityNames:['Product & UX','AI Agent workflows','Cross-platform apps','Delivery automation'],
+    capabilityDescs:['User journeys, prototypes, validation criteria','Task design, collaboration, state, evaluation','Taro / React / TypeScript / FastAPI','GitHub Actions, quality gates, device testing'],
+    aboutEyebrow:'03 / THE PERSON', aboutTitle:'I build, not just imagine.',
+    aboutLead:'I’m Justin, an independent AI product builder and Zhejiang University graduate.',
+    aboutBody:'I start with human needs, then prototype and test real interactions. I’m building GoDuck as a long-term AI companion project, while developing practical workflows for AI-assisted software delivery.',
+    aboutRule:'Good AI products should solve human problems first.',
+    contactEyebrow:'04 / CONNECTION',contactTitle:'Let’s build something that matters.',
+    contactLead:'Open to AI product, Agent development, cross-platform applications, and long-term remote collaboration.',
+    github:'View GitHub',foot:'Independent portfolio · Grounded in real work',back:'Back to portfolio',
+    details:['Positioning','The need','Approach','User value','Evidence & boundaries'],labels:{platform:'Platform',role:'Role',status:'Showcase',tech:'Relevant tools'},
+    visualNote:'Stylized conceptual visualization generated with code, not an actual product screenshot',
+    projects:[
+      {id:'goduck',num:'01',group:'AI PRODUCT / COMPANION',name:'GoDuck',headline:'Growth should not feel like a solo journey.',short:'An AI growth companion concept rooted in empathy before guidance.',stage:'Coming soon',platform:'WeChat Mini Program',role:'Product strategy · UX · Independent development',stack:'Taro · React · AI Apps',value:'Helps people feel understood during difficult moments and regain momentum through manageable steps.',why:'People often know what to do but struggle to act when they feel overwhelmed.',how:'A companion flow: express → feel understood → be supported → optional small action → continuity. Product directions include emotional support, doing things together, goals, and memorable moments.',benefits:['Emotional support | Space to express feelings and feel heard','Do it together | Take a manageable next step','Goal companionship | Encouragement and gentle prompts','Meaningful moments | Remember and reflect on small wins'],evidence:'A product-vision preview for a WeChat Mini Program. The visuals here are conceptual, not screenshots. No GoDuck web app or public product access exists. Final features depend on release.'},
+      {id:'cloud',num:'02',group:'ENGINEERING / DELIVERY',name:'Cloud-first Build',headline:'Reliable builds without a heavy local setup.',short:'A GitHub Actions–first workflow for building, checking, and testing mini-program releases.',stage:'Engineering practice',platform:'GitHub Actions + WeChat DevTools',role:'Workflow design · Engineering debugging',stack:'GitHub Actions · CI · Taro',value:'Reduces local resource demands and creates reproducible checks.',why:'Storage-constrained local development makes large dependencies and build caches costly.',how:'Commit code to a private repo, use GitHub Actions for building and checks, then download small artifacts for simulator and real-device testing.',benefits:['Cloud-first builds','Reviewable quality gates','Real-device verification','Explicit release boundaries'],evidence:'A real engineering workflow used for GoDuck, not proof of a production public launch or a standalone SaaS.'},
+      {id:'workflow',num:'03',group:'AI DEVELOPMENT / WORKFLOW',name:'AI Delivery System',headline:'A more reviewable way to build with AI tools.',short:'Organizing Codex, Cursor, task contracts, and reviews into a repeatable solo-developer workflow.',stage:'Working method',platform:'Developer workflow',role:'Rules · Planning · Review',stack:'Codex · Cursor · GitHub',value:'Reduces rework and clarifies what “done” actually means.',why:'AI-generated changes can drift without a baseline, task context, and acceptance criteria.',how:'Use project-state documents, PR reviews, explicit completion gates, and evidence-backed acceptance.',benefits:['Clear task contracts','Independent review','Version traceability','Evidence over hype'],evidence:'Describes practical collaboration methods, not a commercialized Agent product.'},
+      {id:'fitness',num:'04',group:'PRODUCT DESIGN / EXPLORATION',name:'Dragon Fruit Fitness',headline:'Turn fitness numbers into a sense of progress.',short:'A concept exploring game-like fitness feedback and a character-centered home screen.',stage:'Concept exploration',platform:'WeChat Mini Program concept',role:'Concept · UX Design',stack:'Product UX · Gamification · AI',value:'Makes abstract fitness goals easier to understand and more motivating.',why:'Data-heavy fitness dashboards can overwhelm first-time users.',how:'Use a central character, simple progress indicators, and clear pathways for exercise, food, and tracking.',benefits:['Character-first UX','Progress feedback','Clear information hierarchy','Motivation-oriented design'],evidence:'A product/interaction concept, not a launched app, existing user base, or proof that all AI features have been implemented.'}
+    ]
+  }
+};

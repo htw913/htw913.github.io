@@ -1,0 +1,12 @@
+Third-party runtime dependencies are vendored for this static portfolio.
+
+GSAP 3.13.0
+Copyright 2025 GreenSock. Subject to the GreenSock Standard License:
+https://gsap.com/standard-license/
+The upstream license header is retained in assets/vendor/gsap.min.js and ScrollTrigger.min.js.
+
+Lenis 1.1.20
+Copyright Darkroom Engineering. MIT License. See LENIS-LICENSE.txt.
+
+Three.js r174 / 0.174.0
+Copyright 2010-2025 three.js authors. MIT License. See THREE-LICENSE.txt.
