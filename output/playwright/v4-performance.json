@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-10-08T16:09:23.463Z",
+  "method": "Lighthouse 13.5.0, Chrome for Testing, local static server; desktop repeat after first-load warm-up plus mobile run",
+  "v3": {
+    "desktop": {
+      "performance": 100,
+      "lcp": 500,
+      "cls": 0,
+      "tbt": 80,
+      "totalBytes": 1904640
+    },
+    "mobile": {
+      "performance": 98,
+      "lcp": 2300,
+      "cls": 0,
+      "tbt": 0,
+      "totalBytes": 199030
+    }
+  },
+  "v4": {
+    "desktop": {
+      "performance": 90,
+      "lcp": 2045.6535,
+      "cls": 0,
+      "tbt": 62,
+      "totalBytes": 1925760
+    },
+    "mobile": {
+      "performance": 98,
+      "lcp": 2460.3826,
+      "cls": 0,
+      "tbt": 0,
+      "totalBytes": 220554
+    }
+  },
+  "frameTiming": {
+    "desktopAvgMs": 16.67,
+    "desktopP95Ms": 16.8,
+    "baselineV3AvgMs": 16.54,
+    "baselineV3P95Ms": 17.6
+  }
+}
