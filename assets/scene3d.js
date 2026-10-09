@@ -14,6 +14,7 @@ if(canRender){
     const THREE=await import('./vendor/three.module.js');
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(35,1,.1,90);camera.position.set(0,.1,9.5);
+    window.addEventListener('portfolio:intro-complete',e=>{if(e.detail?.reason==='enter'&&window.gsap)window.gsap.fromTo(camera.position,{z:12.2},{z:9.5,duration:1.25,ease:'power3.out'});},{once:true});
     const canvas=document.createElement('canvas');
     const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'high-performance'});
     if(!gl)throw new Error('WebGL2 unavailable');

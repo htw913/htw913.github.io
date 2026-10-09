@@ -10,12 +10,14 @@
  const g=window.gsap;
  let lenis=null, mm=null, contexts=[],soundOn=false,audioCtx=null,lastSound=0;
  const noMotion=()=>reduce.matches;
+ function syncSoundButton(){const button=$('#sound-toggle');if(!button)return;button.setAttribute('aria-pressed',String(soundOn));button.innerHTML=soundOn?'SOUND ON <span>◉</span>':'SOUND OFF <span>◌</span>';button.setAttribute('aria-label',soundOn?'Mute interactive sound':'Enable interactive sound')}
+ function disableAudio(){soundOn=false;audioCtx=null;syncSoundButton()}
  function audio(kind='hover'){
    if(!soundOn || noMotion())return;
    const now=performance.now();if(now-lastSound<120)return;lastSound=now;
    try{
      audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
-     if(audioCtx.state==='suspended')audioCtx.resume();
+     if(audioCtx.state==='suspended')audioCtx.resume().catch(disableAudio);
      const osc=audioCtx.createOscillator(),vol=audioCtx.createGain();
      const t=audioCtx.currentTime;
      osc.type='sine';osc.frequency.setValueAtTime(kind==='charge'?170:420,t);
@@ -23,14 +25,12 @@
      vol.gain.setValueAtTime(.0001,t);vol.gain.exponentialRampToValueAtTime(.027,t+.014);
      vol.gain.exponentialRampToValueAtTime(.0001,t+.22);
      osc.connect(vol).connect(audioCtx.destination);osc.start(t);osc.stop(t+.24);
-   }catch(err){console.warn('Audio disabled:',err)}
+   }catch{disableAudio()}
  }
  function bindSound(){
    const button=$('#sound-toggle');if(!button)return;
    button.addEventListener('click',async()=>{
-     soundOn=!soundOn;button.setAttribute('aria-pressed',String(soundOn));
-     button.innerHTML=soundOn?'SOUND ON <span>◉</span>':'SOUND OFF <span>◌</span>';
-     button.setAttribute('aria-label',soundOn?'Mute interactive sound':'Enable interactive sound');
+     soundOn=!soundOn;syncSoundButton();
      if(soundOn) audio('charge');
    });
    window.portfolioAudio={play:audio,isEnabled:()=>soundOn};

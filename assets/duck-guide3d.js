@@ -1,3 +1,129 @@
-export async function mountDuckGuide({root,host,button}){
- if(!host||root.dataset.webglMounted)return;let T;try{T=await import('./vendor/three.module.js')}catch{return}root.dataset.webglMounted='1';const scene=new T.Scene(),camera=new T.PerspectiveCamera(24,1,.1,20);camera.position.set(0,.05,4.5);const renderer=new T.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.setSize(150,166,false);renderer.outputColorSpace=T.SRGBColorSpace;host.append(renderer.domElement);root.classList.add('webgl-ready');scene.add(new T.HemisphereLight(0xfff4dc,0x392d35,2.6));const key=new T.DirectionalLight(0xffe1c3,3.4);key.position.set(-2,3,4);scene.add(key);const rim=new T.PointLight(0xb6a5ff,1.8,8);rim.position.set(2,1,2);scene.add(rim);const duck=new T.Group();duck.rotation.y=-.16;scene.add(duck);const mat=(c,r=.7)=>new T.MeshStandardMaterial({color:c,roughness:r,metalness:.02}),yellow=mat(0xffd86a),light=mat(0xffe58a),orange=mat(0xf39a4d),dark=mat(0x3b2630,.45),green=mat(0x65b887),blush=mat(0xf49a91),ell=(r,s)=>{const m=new T.Mesh(new T.SphereGeometry(r,24,18),s);m.scale.set(1,.92,1);return m};const body=ell(.69,yellow);body.scale.set(1,.98,.86);body.position.y=-.47;duck.add(body);const head=ell(.9,light);head.scale.set(1,.95,.84);head.position.y=.44;duck.add(head);const eyeL=ell(.14,dark),eyeR=ell(.14,dark);eyeL.position.set(-.31,.52,.75);eyeR.position.set(.31,.52,.75);eyeL.scale.y=1.2;eyeR.scale.y=1.2;duck.add(eyeL,eyeR);const white=mat(0xffffff,.2),cl=ell(.045,white),cr=ell(.045,white);cl.position.set(-.35,.58,.86);cr.position.set(.27,.58,.86);duck.add(cl,cr);const browL=ell(.05,dark),browR=ell(.05,dark);browL.scale.set(2,.34,.45);browR.scale.set(2,.34,.45);browL.position.set(-.31,.77,.76);browR.position.set(.31,.77,.76);browL.rotation.z=-.13;browR.rotation.z=.13;duck.add(browL,browR);const beak=ell(.25,orange);beak.scale.set(1.3,.45,.85);beak.position.set(0,.18,.84);duck.add(beak);const mouth=ell(.09,dark);mouth.scale.set(1.3,.28,.3);mouth.position.set(0,.14,.92);duck.add(mouth);const cheekL=ell(.13,blush),cheekR=ell(.13,blush);cheekL.scale.set(1.3,.65,.22);cheekR.scale.set(1.3,.65,.22);cheekL.position.set(-.51,.24,.73);cheekR.position.set(.51,.24,.73);duck.add(cheekL,cheekR);const tuft=(x,r)=>{const t=ell(.2,light);t.scale.set(.55,1.45,.45);t.position.set(x,.99,.06);t.rotation.z=r;return t};duck.add(tuft(-.22,-.28),tuft(.22,.28));const wingL=ell(.26,yellow);wingL.scale.set(.55,1.25,.45);wingL.position.set(-.74,-.18,.16);wingL.rotation.z=-.42;duck.add(wingL);const wingR=ell(.26,yellow);wingR.scale.set(.55,1.25,.45);wingR.position.set(.74,-.18,.16);wingR.rotation.z=.42;duck.add(wingR);const leaf1=ell(.12,green),leaf2=ell(.12,green);leaf1.scale.set(.5,1.35,.25);leaf2.scale.set(.5,1.35,.25);leaf1.position.set(-.1,-.27,.69);leaf2.position.set(.1,-.27,.69);leaf1.rotation.z=-.55;leaf2.rotation.z=.55;duck.add(leaf1,leaf2);const footL=ell(.18,orange),footR=ell(.18,orange);footL.scale.set(1.3,.45,1.5);footR.scale.set(1.3,.45,1.5);footL.position.set(-.36,-1.1,.2);footR.position.set(.36,-1.1,.2);duck.add(footL,footR);const ring=new T.Mesh(new T.TorusGeometry(1.12,.012,8,64),new T.MeshBasicMaterial({color:0xf3bd9e,transparent:true,opacity:.62}));ring.rotation.x=Math.PI/2.25;ring.position.y=-.15;duck.add(ring);const clock=new T.Clock();const motionOK=!matchMedia('(prefers-reduced-motion: reduce)').matches;let active=motionOK,drag=false,moved=false,targetY=-.16,wave=0,blink=0;const gsap=window.gsap,tick=()=>{if(!active)return;const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;duck.position.y=Math.sin(t*1.6)*.045;head.rotation.z=Math.sin(t*1.2)*.018;wave=Math.max(0,wave-dt*2.3);wingL.rotation.z=-.42-Math.sin(wave*Math.PI*3)*.6;ring.rotation.z=t*.12;blink+=dt;if(blink>4.2){blink=0;gsap?.to([eyeL.scale,eyeR.scale],{y:.12,duration:.08,yoyo:true,repeat:1})}if(!drag)duck.rotation.y+=(targetY-duck.rotation.y)*.06;renderer.render(scene,camera)};if(gsap&&motionOK)gsap.ticker.add(tick);else if(motionOK)renderer.setAnimationLoop(tick);else tick();const resize=()=>{const r=host.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height);camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};resize();window.addEventListener('resize',resize,{passive:true});const ray=new T.Raycaster(),pointer=new T.Vector2(),hit=e=>{const r=renderer.domElement.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;ray.setFromCamera(pointer,camera);return ray.intersectObjects(duck.children,true).length};button.addEventListener('pointermove',e=>{if(hit(e)){targetY=((e.clientX-button.getBoundingClientRect().left)/button.getBoundingClientRect().width-.5)*.4;root.classList.add('duck-hover')}if(drag){if(Math.abs(e.movementX)>2)moved=true;targetY+=e.movementX*.015}});button.addEventListener('pointerleave',()=>{root.classList.remove('duck-hover');targetY=-.16});button.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){drag=true;moved=false;button.setPointerCapture?.(e.pointerId);button.dataset.dragged='0'}});button.addEventListener('pointerup',e=>{if(drag){drag=false;button.dataset.dragged=moved?'1':'';setTimeout(()=>delete button.dataset.dragged,50);wave=1}});const sleep=()=>{active=false},wake=()=>{if(!document.hidden)active=true};document.addEventListener('visibilitychange',()=>document.hidden?sleep():wake());const io=new IntersectionObserver(es=>es[0]?.isIntersecting?wake():sleep(),{threshold:.01});io.observe(root);return()=>{active=false;motionOK&&gsap?.ticker.remove(tick);io.disconnect();renderer.dispose();renderer.domElement.remove()}
+/* GoDuck V4.2: interactive Three.js sculpture, driven by the shared GSAP ticker. */
+import {createGoDuckModel} from './goduck-v42-model.js';
+
+export async function mountDuckGuide({root,host,button}) {
+  if (!root || !host || root.dataset.webglMounted) return null;
+  let T;
+  try { T=await import('./vendor/three.module.js'); }
+  catch { root.classList.add('webgl-fallback'); return null; }
+  if (!document.createElement('canvas').getContext('webgl')) {
+    root.classList.add('webgl-fallback'); return null;
+  }
+
+  let renderer,model;
+  try {
+    renderer=new T.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+    renderer.outputColorSpace=T.SRGBColorSpace;
+    renderer.toneMapping=T.ACESFilmicToneMapping;
+    renderer.toneMappingExposure=1.08;
+    model=createGoDuckModel(T);
+  } catch(error) {
+    renderer?.dispose();root.classList.add('webgl-fallback');
+    console.info('GoDuck 3D fallback:',error?.message||error);return null;
+  }
+  const scene=new T.Scene(),camera=new T.PerspectiveCamera(29,1,.1,20);
+  camera.position.set(0,.12,7.35);
+  scene.add(model.root);
+  const ambient=new T.HemisphereLight(0xfff4d8,0x5b3558,1.55);
+  const key=new T.DirectionalLight(0xffe4b8,1.95);key.position.set(-2,3.5,4.5);
+  const fill=new T.DirectionalLight(0xffc6a3,.55);fill.position.set(3,1,4);
+  const rim=new T.PointLight(0x7c79ff,6,10);rim.position.set(2.5,1,-2.5);
+  scene.add(ambient,key,fill,rim);
+  host.append(renderer.domElement);
+  renderer.domElement.setAttribute('aria-hidden','true');
+  root.dataset.webglMounted='1';root.classList.add('webgl-ready');
+
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  const raycaster=new T.Raycaster(),pointer=new T.Vector2(),gsap=window.gsap;
+  const clock=new T.Clock();
+  const rig=model.rig;
+  let mode='idle',inView=true,disposed=false,drag=false,dragStart=0,dragTotal=0;
+  let rotationTarget=-.16,lookTargetX=0,lookTargetY=0,waveStart=-99,happyStart=-99;
+  let nextBlink=2.8,blinkStart=-99,elapsed=0;
+  const hasMotion=()=>!reduce.matches && !document.hidden && inView && !root.classList.contains('is-content-hidden') && !disposed;
+  const setState=next=>{
+    mode=next;root.dataset.duckState=next;
+    if(next==='wave'||next==='guide')waveStart=elapsed;
+    if(next==='happy')happyStart=elapsed;
+    window.portfolioV4State&&(window.portfolioV4State.duckState=next);
+  };
+  function fit(){
+    if(disposed)return;
+    const box=host.getBoundingClientRect();
+    const w=Math.max(1,box.width),h=Math.max(1,box.height);
+    camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false);
+    renderer.render(scene,camera);
+  }
+  const ro=new ResizeObserver(fit);ro.observe(host);fit();
+
+  function tick(){
+    if(!hasMotion())return;
+    const delta=Math.min(clock.getDelta(),.05);elapsed+=delta;
+    const breath=Math.sin(elapsed*2.05);
+    rig.bodyRig.scale.y=1+breath*.009;
+    rig.bodyRig.position.y=Math.sin(elapsed*1.35)*.025;
+    const happy=Math.max(0,1-(elapsed-happyStart)/.72);
+    rig.bodyRig.position.y+=Math.sin((1-happy)*Math.PI*2)*.10*happy;
+    rig.headRig.rotation.y+=(lookTargetX-rig.headRig.rotation.y)*.075;
+    rig.headRig.rotation.x+=(lookTargetY-rig.headRig.rotation.x)*.075;
+    rig.headRig.rotation.z=Math.sin(elapsed*.8)*.018-happy*.035;
+    model.root.rotation.y+=(rotationTarget-model.root.rotation.y)*.09;
+    rig.liftedFoot.rotation.z=-.53+Math.sin(elapsed*1.7)*.035;
+    const waveAge=elapsed-waveStart;
+    const waving=waveAge>=0&&waveAge<1.45;
+    rig.leftWing.rotation.z=-.70+(waving?Math.sin(waveAge*17)*.34*(1-waveAge/1.45):Math.sin(elapsed*1.4)*.018);
+    rig.rightWing.rotation.z=-.12+Math.sin(elapsed*1.05)*.015;
+    if(elapsed>nextBlink){blinkStart=elapsed;nextBlink=elapsed+3+Math.random()*3.4}
+    const blinkAge=elapsed-blinkStart;
+    const blink=blinkAge<.19?Math.max(.08,1-Math.sin(blinkAge/.19*Math.PI)*.92):1;
+    rig.eyes.forEach(eye=>eye.scale.y=blink);
+    if(mode==='hover'&&elapsed-waveStart>2.6)setState('wave');
+    renderer.render(scene,camera);
+  }
+  if(gsap)gsap.ticker.add(tick);
+  else renderer.render(scene,camera);
+
+  const onMove=e=>{
+    if(drag){dragTotal+=Math.abs(e.movementX);rotationTarget=T.MathUtils.clamp(rotationTarget+e.movementX*.012,-.52,.37);return}
+    const box=renderer.domElement.getBoundingClientRect();
+    pointer.set((e.clientX-box.left)/box.width*2-1,-(e.clientY-box.top)/box.height*2+1);
+    raycaster.setFromCamera(pointer,camera);
+    const hit=raycaster.intersectObjects(model.meshes,false).length>0;
+    root.classList.toggle('duck-hover',hit);
+    if(hit){
+      lookTargetX=T.MathUtils.clamp(pointer.x*.16,-.14,.14);
+      lookTargetY=T.MathUtils.clamp(-pointer.y*.1,-.1,.1);
+      if(mode==='idle')setState('hover');
+    }
+  };
+  const onLeave=()=>{root.classList.remove('duck-hover');lookTargetX=0;lookTargetY=0;if(mode==='hover')setState('idle')};
+  const onDown=e=>{if(e.pointerType==='mouse'){drag=true;dragStart=e.clientX;dragTotal=0;button.dataset.dragged='0';button.setPointerCapture?.(e.pointerId)}};
+  const onUp=e=>{if(!drag)return;drag=false;dragTotal=Math.max(dragTotal,Math.abs(e.clientX-dragStart));button.dataset.dragged=dragTotal>8?'1':'';setTimeout(()=>delete button.dataset.dragged,70);if(dragTotal<=8)setState('happy')};
+  button.addEventListener('pointermove',onMove);button.addEventListener('pointerleave',onLeave);
+  button.addEventListener('pointerdown',onDown);button.addEventListener('pointerup',onUp);
+  const onGuide=e=>setState(e.detail?.open?'guide':'comfort');
+  const onDismiss=()=>cleanup();
+  root.addEventListener('portfolio:duck-guide',onGuide);
+  root.addEventListener('portfolio:duck-dismiss',onDismiss);
+  const onVisibility=()=>{if(!document.hidden)clock.getDelta();else setState('sleep')};
+  document.addEventListener('visibilitychange',onVisibility);
+  const observer=new IntersectionObserver(entries=>{inView=!!entries[0]?.isIntersecting;if(inView){clock.getDelta();if(mode==='sleep')setState('idle')}else setState('sleep')},{threshold:.01});
+  observer.observe(root);
+  const onLost=e=>{e.preventDefault();cleanup();root.classList.remove('webgl-ready');root.classList.add('webgl-fallback')};
+  renderer.domElement.addEventListener('webglcontextlost',onLost,{once:true});
+  function cleanup(){
+    if(disposed)return;disposed=true;
+    gsap?.ticker.remove(tick);ro.disconnect();observer.disconnect();
+    document.removeEventListener('visibilitychange',onVisibility);
+    button.removeEventListener('pointermove',onMove);button.removeEventListener('pointerleave',onLeave);
+    button.removeEventListener('pointerdown',onDown);button.removeEventListener('pointerup',onUp);
+    root.removeEventListener('portfolio:duck-guide',onGuide);root.removeEventListener('portfolio:duck-dismiss',onDismiss);
+    model.meshes.forEach(m=>m.geometry.dispose());
+    const mats=new Set(model.meshes.map(m=>m.material));mats.forEach(m=>m.dispose());
+    renderer.dispose();renderer.domElement.remove();
+  }
+  window.addEventListener('pagehide',cleanup,{once:true});
+  window.portfolioDuck={model,renderer,setState,debugPose:angle=>{model.root.rotation.y=angle;rotationTarget=angle;renderer.render(scene,camera)},cleanup};
+  return cleanup;
 }

@@ -1,0 +1,47 @@
+/* V4.2: approved mascot, visible contact details, and safer responsive placement. */
+:root{--contact-cream:#f2e8df;--contact-peach:#ffd0ae;--contact-ink:#100e16}
+.intro-enter{min-width:280px;gap:20px}
+.duck-guide{right:clamp(12px,2vw,28px);bottom:clamp(12px,2vw,25px)}
+.duck-stage{width:168px;height:186px}
+.duck-activate{background:radial-gradient(circle at 50% 54%,rgba(255,220,139,.12),transparent 65%);filter:drop-shadow(0 12px 20px rgba(0,0,0,.38))}
+.duck-canvas canvas{touch-action:pan-y}
+.duck-guide.duck-hover .duck-activate{filter:drop-shadow(0 14px 24px rgba(105,100,239,.3))}
+.duck-fallback{inset:3px 0 0;width:100%;height:calc(100% - 3px)}
+.duck-caption{bottom:0;z-index:3;background:#241b4a;color:#f1eaff;border:1px solid rgba(94,200,255,.45);box-shadow:0 0 15px rgba(38,156,255,.28)}
+.duck-dismiss{right:4px;top:17px;background:#1c1635}
+.duck-panel{width:min(345px,calc(100vw - 175px));border-color:rgba(139,128,253,.5);box-shadow:0 22px 80px rgba(0,0,0,.44),0 0 42px rgba(90,92,207,.13)}
+.duck-guide.is-contact-hidden{display:none!important}
+.duck-guide.is-content-hidden{opacity:0;pointer-events:none}
+.visual-goduck{background:radial-gradient(ellipse at 49% 48%,rgba(80,67,130,.38),transparent 57%),linear-gradient(145deg,#151022,#080a15)}
+.visual-duck-v42{position:relative;display:grid;place-items:center;width:100%;height:100%;overflow:hidden}
+.visual-duck-v42 img{position:absolute;z-index:2;inset:8% 8%;width:84%;height:84%;object-fit:contain;filter:drop-shadow(0 20px 28px rgba(0,0,0,.35));transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.project-card:hover .visual-duck-v42 img{transform:translateY(-8px) rotate(-2deg) scale(1.025)}
+.visual-duck-v42 .duck-orbit{width:70%;height:34%;border-color:rgba(113,148,244,.35);transform:rotate(-15deg)}
+.visual-duck-v42 .graphic-note{z-index:3;bottom:17px;color:#c3b5e1}
+.case-graphic .visual-duck-v42 img{height:78%}
+.section-contact{position:relative;padding-bottom:clamp(90px,10vw,160px);min-height:570px;background:radial-gradient(circle at 84% 24%,rgba(89,68,155,.22),transparent 33%),radial-gradient(circle at 18% 85%,rgba(177,98,85,.13),transparent 40%),#0b0911}
+.section-contact:before{content:"";pointer-events:none;position:absolute;top:0;left:5vw;right:5vw;height:1px;background:linear-gradient(90deg,transparent,rgba(225,175,174,.52),transparent)}
+.section-contact h2{font-size:clamp(50px,7vw,104px);margin:50px 0 24px;text-wrap:balance}
+.contact-lead{font-size:clamp(15px,1.4vw,19px);color:#c4b9c3;max-width:700px;line-height:1.85}
+.contact-address{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:baseline;margin-top:65px;padding:22px 0;border-top:1px solid rgba(232,210,225,.25);border-bottom:1px solid rgba(232,210,225,.25)}
+.contact-address span{font-size:10px;letter-spacing:.22em;color:#ae9bb7}
+.contact-address a{font:400 clamp(24px,3.2vw,49px)/1.25 Georgia,'PingFang SC',serif;letter-spacing:-.035em;color:var(--contact-cream);overflow-wrap:anywhere;width:max-content;max-width:100%;text-decoration-color:transparent;text-underline-offset:9px;transition:color .2s,text-decoration-color .2s}
+.contact-address a:hover,.contact-address a:focus-visible{color:var(--contact-peach);text-decoration:underline;text-decoration-color:var(--contact-peach)}
+.contact-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:28px}
+.contact-actions .button{min-width:175px}
+.contact-actions .button-outline{color:#efe9ef;background:rgba(255,255,255,.03)}
+.contact-actions .button:focus-visible,.contact-address a:focus-visible,.duck-panel button:focus-visible,.duck-dismiss:focus-visible,.duck-activate:focus-visible{outline:2px solid #ffd6ba;outline-offset:4px}
+.copy-feedback{min-height:25px;margin-top:14px;color:#a6e4f6;font-size:12px;letter-spacing:.04em}
+@media(max-width:900px){.duck-stage{width:138px;height:154px}.duck-panel{width:min(330px,calc(100vw - 145px))}.contact-address{grid-template-columns:1fr;gap:12px}.section-contact{padding-bottom:105px}}
+@media(max-width:620px){.intro-enter{min-width:min(300px,82vw);font-size:10px}.duck-guide{right:8px;bottom:8px}.duck-stage{width:94px;height:108px}.duck-caption{font-size:7px}.duck-dismiss{top:2px}.duck-panel{position:absolute;right:2px;bottom:115px;width:min(340px,calc(100vw - 20px))}.section-contact{padding-top:87px;padding-bottom:95px;min-height:540px}.section-contact h2{margin:37px 0 20px;font-size:clamp(43px,11vw,60px)}.contact-lead{font-size:14px}.contact-address{margin-top:43px;padding:18px 0}.contact-address a{font-size:clamp(21px,6vw,29px)}.contact-actions{gap:10px}.contact-actions .button{min-width:0;width:calc(50% - 5px);gap:7px;font-size:11px;padding:10px 12px}.contact-actions .button:last-child{width:100%}.copy-feedback{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.visual-duck-v42 img{transition:none}.project-card:hover .visual-duck-v42 img{transform:none}}
+
+.duck-panel-slot[hidden]{display:none!important}
+.duck-panel-slot{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,390px);align-items:start;gap:28px;margin:0 0 28px;padding:22px 0 27px;border-top:1px solid rgba(165,146,232,.32);border-bottom:1px solid rgba(165,146,232,.32)}
+.duck-panel-slot>p{font-size:10px;letter-spacing:.24em;color:#ac9fc2;padding-top:8px}
+.duck-panel-slot .duck-panel{width:100%;position:relative;inset:auto;display:block;order:initial;transform:none}
+@media(max-width:620px){.duck-panel-slot{grid-template-columns:1fr;gap:12px;margin:0 0 22px;padding:16px 0 22px}.duck-panel-slot .duck-panel{width:100%;right:auto;bottom:auto}}
+.case-graphic .visual-duck-v42 .graphic-note{bottom:55px}
+.duck-mobile-slot{display:none}
+@media(max-width:900px){.duck-mobile-slot{display:flex;align-items:center;justify-content:space-between;min-height:146px;margin:0 0 20px;padding:8px 18px 8px 24px;border:1px solid rgba(142,132,219,.3);background:radial-gradient(circle at 88% 55%,rgba(109,90,208,.18),transparent 46%),rgba(16,15,31,.72)}.duck-mobile-slot>p{color:#b7aacd;font-size:10px;letter-spacing:.17em;line-height:1.8}.duck-mobile-slot>p span{display:block;color:#7caee8}.duck-mobile-slot .duck-guide{position:relative;right:auto;bottom:auto;z-index:1;flex:none}.duck-mobile-slot .duck-stage{height:138px;width:126px}.duck-mobile-slot .duck-panel{display:none}}
+@media(max-width:620px){.duck-mobile-slot{min-height:120px;padding:5px 10px 5px 18px}.duck-mobile-slot .duck-stage{width:104px;height:112px}}

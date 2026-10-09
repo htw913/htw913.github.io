@@ -9,7 +9,7 @@
   const page=document.body.dataset.page;
   const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const graphics={
-    goduck:`<div class="visual-duck" aria-hidden="true"><div class="duck-orbit"></div><div class="duck-shell"><span class="duck-hair">✦</span><span class="duck-eyes"><i></i><i></i></span><span class="duck-bill"></span><span class="duck-body"></span></div><div class="duck-heart">♡</div><span class="graphic-note">GROWTH / WITH CARE</span></div>`,
+    goduck:`<div class="visual-duck-v42" aria-hidden="true"><span class="duck-orbit"></span><img src="./assets/goduck-v42-cutout.png" alt="" width="1254" height="1254" loading="lazy"><span class="graphic-note">GUIDE / GROWTH WITH CARE</span></div>`,
     cloud:`<div class="visual-flow" aria-hidden="true"><div class="flow-unit unit-a">GIT<br><small>SOURCE</small></div><div class="flow-edge edge-a"></div><div class="flow-unit unit-b">CI<br><small>CHECK</small></div><div class="flow-edge edge-b"></div><div class="flow-unit unit-c">APP<br><small>DEVICE</small></div><span class="graphic-note">CLOUD / VERIFIED BUILDS</span></div>`,
     workflow:`<div class="visual-stack" aria-hidden="true"><div class="glass-sheet sheet-back"></div><div class="glass-sheet sheet-middle"></div><div class="glass-sheet sheet-front"><div class="glass-circle">◎</div><div class="glass-lines"><i></i><i></i><i></i></div><span>AI × HUMAN</span></div><span class="graphic-note">PLAN / BUILD / REVIEW</span></div>`,
     fitness:`<div class="visual-fitness" aria-hidden="true"><div class="fitness-loop"><div class="fitness-inner">↗<small>PROGRESS</small></div></div><div class="fitness-dashes"><i></i><i></i><i></i></div><span class="graphic-note">MOTIVATION / VISUALIZED</span></div>`
@@ -24,7 +24,7 @@
     set('#capability-eyebrow',d.capabilityEyebrow);set('#capability-title',d.capabilityTitle);set('#capability-lead',d.capabilityLead);
     $('#cap-grid').innerHTML=d.capabilityNames.map((v,i)=>`<article class="cap-card reveal"><div class="cap-number">0${i+1} / SYSTEM</div><div class="cap-glyph">${['◇','✳','⬡','⌘'][i]}</div><h3>${escape(v)}</h3><p>${escape(d.capabilityDescs[i])}</p></article>`).join('');
     set('#about-eyebrow',d.aboutEyebrow);set('#about-title',d.aboutTitle);set('#about-lead',d.aboutLead);set('#about-body',d.aboutBody);set('#about-rule',d.aboutRule);
-    set('#contact-eyebrow',d.contactEyebrow);set('#contact-title',d.contactTitle);set('#contact-lead',d.contactLead);set('#github-label',d.github);set('#footer-line',d.foot);
+    set('#contact-eyebrow',d.contactEyebrow);set('#contact-title',d.contactTitle);set('#contact-lead',d.contactLead);set('#send-email-text',d.sendEmail);set('#copy-email-text',d.copyEmail);set('#github-label',d.github);set('#footer-line',d.foot);
     $$('.nav-links a[data-nav]').forEach((x,i)=>x.textContent=d.nav[i]);
     installReveal();
     window.dispatchEvent(new CustomEvent('portfolio:render'));
