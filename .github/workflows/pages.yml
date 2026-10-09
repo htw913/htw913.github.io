@@ -30,10 +30,20 @@ jobs:
           test -s assets/data.js
           test -s assets/motion.js
           test -s assets/scene3d.js
+          test -s assets/v4-2.css
+          test -s assets/v4-2.js
+          test -s assets/duck-guide3d.js
+          test -s assets/goduck-v42-model.js
+          test -s assets/goduck-v42-approved-reference.png
+          test -s assets/goduck-v42-cutout.png
           node --check assets/app.js
           node --check assets/motion.js
           node --check assets/scene3d.js
           node --check assets/data.js
+          node --check assets/v4-experience.js
+          node --check assets/v4-2.js
+          node --check assets/duck-guide3d.js
+          node --check assets/goduck-v42-model.js
           ! grep -RqE 'http://localhost|file:///|YOUR_API_KEY' index.html project.html assets
       - name: Configure Pages
         uses: actions/configure-pages@v5

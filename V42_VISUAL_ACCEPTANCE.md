@@ -1,6 +1,6 @@
 # PORTFOLIO-V4.2 验收记录
 
-**状态：`WAITING_USER_VISUAL_ACCEPTANCE`**。工作树：`codex/portfolio-v4-2-approved-duck`。V4.2 未合并、未推送、未覆盖 GitHub Pages。线上 `https://htw913.github.io/` 仍是原先的 V4 版本。此版本是 Justin / HTW913 的个人作品集，GoDuck 仅为精选项目和站内导览角色。
+这份记录保存了 V4.2 上线前的视觉与功能验收证据。Justin 于 2026-10-09 随后明确要求更新部署，取代了此前的 `WAITING_USER_VISUAL_ACCEPTANCE` 发布限制。发布结果以 GitHub Pages 工作流及公开网址的验证为准。此版本是 Justin / HTW913 的个人作品集，GoDuck 仅为精选项目和站内导览角色。
 
 ## 范围与来源
 
@@ -63,4 +63,4 @@ V4.2 桌面分数低 2 分，LCP 慢约 297 ms；移动分数低 1 分，LCP 慢
 
 ## 验收边界
 
-视觉美术和动效质感仍需 Justin 最终确认。当前分支可本地预览和审阅，**尚未合并或部署到 GitHub Pages**。收到明确视觉验收后再执行上线。
+视觉美术和动效质感仍欢迎 Justin 反馈。此报告保留的是上线前测试数据与证据；后续明确的部署请求已授权正式发布。

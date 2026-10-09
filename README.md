@@ -1,52 +1,37 @@
-**V3 TRIONN-INSPIRED PORTFOLIO: Read `README_V3.md` and `CODEX_V3_TRIONN_TASK.md` first.**
+# JUSTIN / HTW913 — AI Product Engineer Portfolio
 
-# JUSTIN / HTW913 — Cyber Editorial Portfolio
+[Open the public portfolio](https://htw913.github.io/)
 
-An **original, bilingual personal portfolio** for an AI Product Engineer (NOT a GoDuck product site), developed in lightweight HTML/CSS/vanilla JavaScript. Built for GitHub Pages and Codex editing; no npm install, backend, API keys, or dependencies.
+An original, bilingual personal portfolio for Justin / HTW913. It presents his work, product thinking, design approach, and engineering practice. GoDuck is one selected project and the character used for portfolio navigation; this site is **not** a GoDuck product website.
 
-## IA
+## V4.2 experience
 
-- Hero: Justin / HTW913 and AI-product positioning, CSS 3D prism and orbital motion.
-- Selected works: GoDuck, Cloud-first Build, AI Delivery System, Dragon Fruit Fitness concept.
-- Project case studies: separate URL `project.html?id=<project>` for each.
-- Capabilities, About, Contact; Chinese and English toggle.
+- Cinematic entry with an explicit Enter / Skip path, keyboard support, and a reduced-motion fallback.
+- Three.js hero scene and an original, poseable GoDuck guide modeled from Justin's approved image. The character can blink, wave, look toward the pointer, respond to clicks, and guide visitors to About, Works, GoDuck's case study, or Contact. WebGL failure falls back to the approved visual.
+- GSAP and ScrollTrigger for motion, Lenis for desktop smooth scrolling, and opt-in Web Audio. Third-party runtime files are local under `assets/vendor/`.
+- Responsive Chinese and English content, visible email contact actions, touch and keyboard support.
 
-## Truth and visual restrictions — mandatory
+## Content boundaries
 
-1. This is **Justin's personal portfolio**, not a GoDuck homepage. The portfolio homepage must lead with Justin's name and work.
-2. GoDuck is an AI Growth Companion targeting a **WeChat Mini Program**. On every portfolio surface its public status must be **「敬请期待」 / “Coming soon”**. Do not reveal development percent, milestones, unfinished backend, build status, or a public timeline in GoDuck promotional content.
-3. **No GoDuck web app exists.** This site is not a GoDuck web app. Do not create a fabricated GoDuck browser screenshot, search portal, SaaS dashboard, public download link, user activity metric, revenue, launch date, testimonial, or commercial success story.
-4. GoDuck public product copy describes **benefits and intended experiences** (emotional companionship, doing small actions together, gentle goal companionship, memorable moments) and should be read as a **product vision**, not assertions that every feature is deployed.
-5. No human photos, avatars, generated human faces or portraits whatsoever without the owner's own images and explicit authorization. CSS-only abstract 3D geometry and illustrative duck mascot are permitted. Artwork is **visualization, not evidence of a live UI**.
-6. Other cases must remain truthful: Cloud-first Build and AI Delivery System are engineering practices in the GoDuck workflow, **not commercial standalone products**; Dragon Fruit Fitness is a **concept**.
-7. Keep private GoDuck repository files, internal documentation, customer data, secrets, credentials, or unpublished code off this public site.
-8. Only verified public proof may be linked. The generic GitHub profile is `https://github.com/htw913`.
+1. Justin is the homepage's subject. GoDuck appears as a selected case and portfolio guide.
+2. GoDuck's public status is always **「敬请期待」 / “Coming Soon”**. Its case study describes product vision, not a published web app, usage results, or commercial outcomes.
+3. No private GoDuck repository files or unpublished code belong in this public portfolio.
+4. No human portrait is used. Case-study visuals are illustrations, not screenshots of live products.
 
 ## Local preview
-
-From this folder:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000/` in a browser. Go to a card or open `project.html?id=goduck` etc. Refresh and switch EN/中, check mobile 390px width. The website can also be opened directly as `file://` because all resources are relative.
+Open `http://localhost:8000/`. A local HTTP server is needed for the Three.js module imports. There is no package installation, backend, API key, or build step.
 
-## File map
+## Source and verification
 
-- `index.html`: personal homepage semantic HTML
-- `project.html`: generic case-study page
-- `assets/data.js`: bilingual **public display copy** and verified project boundaries
-- `assets/app.js`: page rendering, language switch, reveal and pointer motion
-- `assets/styles.css`: futuristic editorial visual system, CSS 3D and responsive behavior
-- `.github/workflows/pages.yml`: GitHub Pages automation
-- `.nojekyll`: static GitHub Pages handling
-- `CODEX_DEPLOY.md`: Codex execution contract
-
-## Motion
-
-CSS 3D prism floats, 3 orbit rings, energy sphere, moving ticker, glass-card hover elevation, intersection-based reveal, and pointer-directed orbital tilt. If `prefers-reduced-motion: reduce`, animations are suppressed. No WebGL/Three.js dependency is needed. No artificial loading screens that stop job recruiters reaching content.
-
-## Deploy
-
-Create **a separate PUBLIC portfolio repository**, never deploy your private GoDuck code. For root URL `https://htw913.github.io/`, name repo `htw913.github.io`; otherwise use `https://htw913.github.io/<repo>/`. GitHub repository Settings → Pages → Build and deployment → Source: **GitHub Actions**. Push to main and confirm `Publish personal portfolio` passes, then open the exact URL. Do not call this project "live" before completing this check.
+- `index.html`, `project.html`: static page entry points.
+- `assets/data.js`, `assets/app.js`: bilingual public content and rendering.
+- `assets/v4-experience.js`, `assets/v4-2.js`, `assets/motion.js`: intro, cursor, guide, contact, GSAP / Lenis / audio orchestration.
+- `assets/scene3d.js`, `assets/duck-guide3d.js`, `assets/goduck-v42-model.js`: real Three.js scenes and mascot.
+- [`GODUCK_V42_MODEL_SOURCE.md`](./GODUCK_V42_MODEL_SOURCE.md): approved reference provenance and modeling approach.
+- [`V42_VISUAL_ACCEPTANCE.md`](./V42_VISUAL_ACCEPTANCE.md): browser evidence, A–J acceptance results, Lighthouse data, and issues fixed.
+- `.github/workflows/pages.yml`: validates static files and deploys `main` to GitHub Pages.
